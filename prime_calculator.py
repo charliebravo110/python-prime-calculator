@@ -1,6 +1,23 @@
 #!/usr/bin/env python3
 """
 # RELEASE NOTES
+# Version: 1.6.0
+# Date: 2025-09-05
+# Changes:
+# - Updated unit tests to match 25 prime number configuration
+# - Enhanced test coverage for 25th prime validation (97)
+# - Verified all security enhancements remain intact
+# - Confirmed optimal performance for smaller dataset
+# - All unit tests pass successfully with new configuration
+
+# Version: 1.5.0
+# Date: 2025-09-05
+# Changes:
+# - Modified prime calculation from 100 to 25 numbers
+# - Updated documentation and comments
+# - Improved output formatting for smaller dataset
+# - Maintained all security enhancements and optimizations
+
 # Version: 1.4.0
 # Date: 2025-09-05
 # Changes:
@@ -36,7 +53,7 @@
 # - Maintained calculation of first 50 prime numbers
 
 Prime Number Calculator
-Calculates and displays the first 100 prime numbers using an optimized algorithm.
+Calculates and displays the first 25 prime numbers using an optimized algorithm.
 This implementation uses trial division with optimizations for even numbers
 and only checks odd divisors up to the square root of the candidate number.
 """
@@ -121,30 +138,30 @@ def get_first_n_primes(n):
 
 def main():
     """
-    Main function to calculate and display the first 100 prime numbers.
+    Main function to calculate and display the first 25 prime numbers.
     
     This function orchestrates the prime calculation process and provides
     a user-friendly formatted output showing the results in a tabular format
-    with 10 numbers per row for optimal readability.
+    with 5 numbers per row for optimal readability.
     """
     # Display program header with clear indication of what's being calculated
-    print("Calcul des 100 premiers nombres premiers...")
+    print("Calcul des 25 premiers nombres premiers...")
     print("=" * 50)
     
     try:
-        # Calculate the first 100 prime numbers using our optimized algorithm
-        primes = get_first_n_primes(100)
+        # Calculate the first 25 prime numbers using our optimized algorithm
+        primes = get_first_n_primes(25)
         
         # Display the results header
         print(f"Les {len(primes)} premiers nombres premiers sont :")
         print("-" * 50)
         
-        # Print 10 numbers per line for better readability and organization
+        # Print 5 numbers per line for better readability and organization
         # This creates a neat tabular display that's easy to scan
-        for i in range(0, len(primes), 10):
-            line = primes[i:i+10]  # Get the next batch of up to 10 numbers
+        for i in range(0, len(primes), 5):
+            line = primes[i:i+5]  # Get the next batch of up to 5 numbers
             formatted_line = " ".join(f"{num:4d}" for num in line)  # Right-align with 4 digits
-            print(f"{i+1:3d}-{min(i+10, len(primes)):3d}: {formatted_line}")
+            print(f"{i+1:3d}-{min(i+5, len(primes)):3d}: {formatted_line}")
         
         # Display summary statistics
         print("-" * 50)
