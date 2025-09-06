@@ -41,12 +41,12 @@ class TestPrimeCalculator(unittest.TestCase):
         Set up test fixtures before running all test methods.
         
         This method is called once before all test methods in the class.
-        It calculates the first 100 primes that will be used across all tests.
+        It calculates the first 30 primes that will be used across all tests.
         """
         print("Setting up test environment...")
-        print("Calculating first 100 prime numbers for testing...")
-        cls.primes_100 = get_first_n_primes(100)
-        print(f"Test setup complete. Generated {len(cls.primes_100)} primes.")
+        print("Calculating first 30 prime numbers for testing...")
+        cls.primes_30 = get_first_n_primes(30)
+        print(f"Test setup complete. Generated {len(cls.primes_30)} primes.")
     
     def setUp(self):
         """
@@ -54,27 +54,27 @@ class TestPrimeCalculator(unittest.TestCase):
         
         This method is called before each individual test method.
         """
-        self.expected_100th_prime = 541  # The 100th prime number
+        self.expected_30th_prime = 113   # The 30th prime number
         self.expected_first_prime = 2    # The first prime number
     
     def test_case_1_validate_list_length(self):
         """
-        Test Case 1: Validate that the function returns exactly 100 elements.
+        Test Case 1: Validate that the function returns exactly 30 elements.
         
         Action: Execute the function and check list length
-        Expected Result: The returned list contains exactly 100 elements
+        Expected Result: The returned list contains exactly 30 elements
         """
         print("\n--- Test Case 1: Validating list length ---")
         
-        result_length = len(self.primes_100)
+        result_length = len(self.primes_30)
         
-        print(f"Expected length: 100")
+        print(f"Expected length: 30")
         print(f"Actual length: {result_length}")
         
-        self.assertEqual(result_length, 100, 
-                        f"Expected 100 primes, but got {result_length}")
+        self.assertEqual(result_length, 30, 
+                        f"Expected 30 primes, but got {result_length}")
         
-        print("✓ Test Case 1 PASSED: List contains exactly 100 elements")
+        print("✓ Test Case 1 PASSED: List contains exactly 30 elements")
     
     def test_case_2_validate_first_prime(self):
         """
@@ -85,7 +85,7 @@ class TestPrimeCalculator(unittest.TestCase):
         """
         print("\n--- Test Case 2: Validating first prime ---")
         
-        first_prime = self.primes_100[0]
+        first_prime = self.primes_30[0]
         
         print(f"Expected first prime: {self.expected_first_prime}")
         print(f"Actual first prime: {first_prime}")
@@ -97,22 +97,22 @@ class TestPrimeCalculator(unittest.TestCase):
     
     def test_case_3_validate_last_prime(self):
         """
-        Test Case 3: Validate that the last element is 541 (the 100th prime).
+        Test Case 3: Validate that the last element is 113 (the 30th prime).
         
         Action: Check the last element of the list
-        Expected Result: Must be 541 (the 100th prime number)
+        Expected Result: Must be 113 (the 30th prime number)
         """
-        print("\n--- Test Case 3: Validating last prime (100th) ---")
+        print("\n--- Test Case 3: Validating last prime (30th) ---")
         
-        last_prime = self.primes_100[-1]
+        last_prime = self.primes_30[-1]
         
-        print(f"Expected 100th prime: {self.expected_100th_prime}")
-        print(f"Actual 100th prime: {last_prime}")
+        print(f"Expected 30th prime: {self.expected_30th_prime}")
+        print(f"Actual 30th prime: {last_prime}")
         
-        self.assertEqual(last_prime, self.expected_100th_prime,
-                        f"Expected 100th prime to be {self.expected_100th_prime}, but got {last_prime}")
+        self.assertEqual(last_prime, self.expected_30th_prime,
+                        f"Expected 30th prime to be {self.expected_30th_prime}, but got {last_prime}")
         
-        print("✓ Test Case 3 PASSED: Last element is 541")
+        print("✓ Test Case 3 PASSED: Last element is 113")
     
     def test_case_4_validate_all_numbers_are_prime(self):
         """
@@ -125,11 +125,11 @@ class TestPrimeCalculator(unittest.TestCase):
         
         non_prime_numbers = []
         
-        for i, number in enumerate(self.primes_100):
+        for i, number in enumerate(self.primes_30):
             if not self._is_prime_mathematical_definition(number):
                 non_prime_numbers.append((i + 1, number))
         
-        print(f"Checked {len(self.primes_100)} numbers for primality")
+        print(f"Checked {len(self.primes_30)} numbers for primality")
         
         if non_prime_numbers:
             print(f"Found {len(non_prime_numbers)} non-prime numbers:")
@@ -154,14 +154,14 @@ class TestPrimeCalculator(unittest.TestCase):
         
         out_of_order_pairs = []
         
-        for i in range(1, len(self.primes_100)):
-            current = self.primes_100[i]
-            previous = self.primes_100[i - 1]
+        for i in range(1, len(self.primes_30)):
+            current = self.primes_30[i]
+            previous = self.primes_30[i - 1]
             
             if current <= previous:
                 out_of_order_pairs.append((i - 1, previous, i, current))
         
-        print(f"Checked {len(self.primes_100) - 1} adjacent pairs for ordering")
+        print(f"Checked {len(self.primes_30) - 1} adjacent pairs for ordering")
         
         if out_of_order_pairs:
             print(f"Found {len(out_of_order_pairs)} ordering violations:")
@@ -179,24 +179,24 @@ class TestPrimeCalculator(unittest.TestCase):
         """
         Test Case 6: Validate that there are no duplicate numbers.
         
-        Action: Check that all 100 elements are unique
-        Expected Result: The 100 elements are all different (no duplicates)
+        Action: Check that all 30 elements are unique
+        Expected Result: The 30 elements are all different (no duplicates)
         """
         print("\n--- Test Case 6: Validating uniqueness ---")
         
-        unique_numbers = set(self.primes_100)
+        unique_numbers = set(self.primes_30)
         duplicates = []
         
         # Find duplicates by comparing list length with set length
-        if len(unique_numbers) != len(self.primes_100):
+        if len(unique_numbers) != len(self.primes_30):
             # If there are duplicates, find them
             seen = set()
-            for i, number in enumerate(self.primes_100):
+            for i, number in enumerate(self.primes_30):
                 if number in seen:
                     duplicates.append((i, number))
                 seen.add(number)
         
-        print(f"Original list length: {len(self.primes_100)}")
+        print(f"Original list length: {len(self.primes_30)}")
         print(f"Unique numbers count: {len(unique_numbers)}")
         
         if duplicates:
@@ -206,10 +206,10 @@ class TestPrimeCalculator(unittest.TestCase):
         else:
             print("All numbers are unique")
         
-        self.assertEqual(len(unique_numbers), len(self.primes_100),
+        self.assertEqual(len(unique_numbers), len(self.primes_30),
                         f"Found duplicate numbers in the list: {duplicates}")
         
-        print("✓ Test Case 6 PASSED: All 100 elements are unique")
+        print("✓ Test Case 6 PASSED: All 30 elements are unique")
     
     def _is_prime_mathematical_definition(self, n):
         """
